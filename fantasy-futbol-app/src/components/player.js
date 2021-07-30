@@ -61,7 +61,7 @@ export class Player extends Component {
 							this.props.renderStat(statKey.replaceAll(/\s/g, ''));
 						}}
 					>
-						View
+						View/Edit
 					</button>
 				</td>
 			</tr>

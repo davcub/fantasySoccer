@@ -75,4 +75,68 @@ router.route('/statKey/:statKey').delete((req, res) => {
 		.catch((err) => res.status(400).json('Error ' + err));
 });
 
+//sort goals (greatest to least)
+router.route('/find/sort/goals/descending').get((req, res) => {
+	Stat.find()
+		.sort({ goals: -1 })
+		.then((stats) => res.json(stats))
+		.catch((err) => res.status(400).json('Error' + err));
+});
+
+//sort goals (least to greatest)
+router.route('/find/sort/goals/ascending').get((req, res) => {
+	Stat.find()
+		.sort({ goals: 1 })
+		.then((stats) => res.json(stats))
+		.catch((err) => res.status(400).json('Error' + err));
+});
+
+//sort assists (greatest to least)
+router.route('/find/sort/assists/descending').get((req, res) => {
+	Stat.find()
+		.sort({ assists: -1 })
+		.then((stats) => res.json(stats))
+		.catch((err) => res.status(400).json('Error' + err));
+});
+
+//sort assists (least to greatest)
+router.route('/find/sort/assists/ascending').get((req, res) => {
+	Stat.find()
+		.sort({ assists: 1 })
+		.then((stats) => res.json(stats))
+		.catch((err) => res.status(400).json('Error' + err));
+});
+
+//sort redCards (greatest to least)
+router.route('/find/sort/redCards/descending').get((req, res) => {
+	Stat.find()
+		.sort({ redCards: -1 })
+		.then((stats) => res.json(stats))
+		.catch((err) => res.status(400).json('Error' + err));
+});
+
+//sort redCards (least to greatest)
+router.route('/find/sort/redCards/ascending').get((req, res) => {
+	Stat.find()
+		.sort({ redCards: 1 })
+		.then((stats) => res.json(stats))
+		.catch((err) => res.status(400).json('Error' + err));
+});
+
+//sort redCards (greatest to least)
+router.route('/find/sort/yellowCards/descending').get((req, res) => {
+	Stat.find()
+		.sort({ yellowCards: -1 })
+		.then((stats) => res.json(stats))
+		.catch((err) => res.status(400).json('Error' + err));
+});
+
+//sort redCards (least to greatest)
+router.route('/find/sort/yellowCards/ascending').get((req, res) => {
+	Stat.find()
+		.sort({ yellowCards: 1 })
+		.then((stats) => res.json(stats))
+		.catch((err) => res.status(400).json('Error' + err));
+});
+
 module.exports = router;
