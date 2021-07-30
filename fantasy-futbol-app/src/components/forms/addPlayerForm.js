@@ -5,11 +5,11 @@ export class AddPlayerForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: '',
+			name: 'Name',
 			team: 'Arsenal',
 			position: 'Forward',
 			age: 0,
-			country: '',
+			country: 'Country',
 			goals: 0,
 			assists: 0,
 			redCards: 0,
@@ -116,7 +116,7 @@ export class AddPlayerForm extends Component {
 				<br />
 				<input
 					type="text"
-					placeholder="Name"
+					placeholder={this.state.name}
 					value={this.state.name}
 					onChange={this.handleNameChange}
 				/>
@@ -165,7 +165,7 @@ export class AddPlayerForm extends Component {
 				<br />
 				<input
 					type="text"
-					placeholder="Country"
+					placeholder={this.state.country}
 					value={this.state.country}
 					onChange={this.handleCountryChange}
 				/>

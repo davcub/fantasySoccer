@@ -4,7 +4,9 @@ import Axios from 'axios';
 import { AddPlayerForm } from './forms/addPlayerForm';
 import { EditPlayerForm } from './forms/editPlayerForm';
 import { EditStatForm } from './forms/editStatForm';
-import { Player } from './player.js';
+import { Player } from './player';
+
+import { StatsList } from './statsList';
 
 export class PlayersList extends Component {
 	constructor(props) {
@@ -18,6 +20,7 @@ export class PlayersList extends Component {
 			viewStat: false,
 			changingView: false,
 			editingStatByKey: '',
+			statView: false,
 		};
 
 		this.unrenderAddPlayerForm = this.unrenderAddPlayerForm.bind(this);
@@ -25,6 +28,7 @@ export class PlayersList extends Component {
 		this.unrenderEditPlayerForm = this.unrenderEditPlayerForm.bind(this);
 		this.renderStat = this.renderStat.bind(this);
 		this.unrenderStat = this.unrenderStat.bind(this);
+		this.unrenderAllStats = this.unrenderAllStats.bind(this);
 	}
 
 	//will make axios call after the first render
@@ -85,6 +89,12 @@ export class PlayersList extends Component {
 		});
 	}
 
+	unrenderAllStats() {
+		this.setState({
+			statView: false,
+		});
+	}
+
 	render() {
 		let players = this.state.players;
 		//have to check if players array is empty because it will have an error when rendering
@@ -120,25 +130,55 @@ export class PlayersList extends Component {
 								Add Player
 							</button>
 						)}
-						<table className="table">
-							<thead className="thead-light">
-								<tr>
-									<th>Name</th>
-									<th>Team</th>
-									<th>Position</th>
-									<th>Age</th>
-									<th>Country</th>
-									<th>Actions</th>
-									<th>Stats</th>
-								</tr>
-							</thead>
-							<tbody>{this.playersList()}</tbody>
-						</table>
+						{this.state.statView ? (
+							<StatsList unrender={this.unrenderAllStats} />
+						) : (
+							<div>
+								<button
+									onClick={() => {
+										this.setState({
+											statView: true,
+										});
+									}}
+								>
+									Compare Stats
+								</button>
+								<table className="table">
+									<thead className="thead-light">
+										<tr>
+											<th>Name</th>
+											<th>Team</th>
+											<th>Position</th>
+											<th>Age</th>
+											<th>Country</th>
+											<th>Actions</th>
+											<th>Stats</th>
+										</tr>
+									</thead>
+									<tbody>{this.playersList()}</tbody>
+								</table>
+							</div>
+						)}
 					</div>
 				)}
 			</div>
 		) : (
-			<div>{'loading players'}</div>
+			<div>
+				{this.state.addPlayerForm ? (
+					<AddPlayerForm unrender={this.unrenderAddPlayerForm} />
+				) : (
+					<button
+						onClick={() => {
+							this.setState({
+								addPlayerForm: true,
+							});
+						}}
+					>
+						Add Player
+					</button>
+				)}
+				<div>loading players or not players</div>
+			</div>
 		);
 	}
 }

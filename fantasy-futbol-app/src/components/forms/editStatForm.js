@@ -48,7 +48,6 @@ export class EditStatForm extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.state.id);
 		Axios.post(`http://localhost:5000/stats/update/${this.state.id}`, {
 			statKey: this.props.statKey,
 			playerName: this.state.playerName,
@@ -86,32 +85,28 @@ export class EditStatForm extends Component {
 			<form onSubmit={this.handleSubmit}>
 				<label>Goals</label>
 				<input
-					type="text"
-					placeholder={this.state.goals}
+					type="number"
 					value={this.state.goals}
 					onChange={this.handleGoalsChange}
 				></input>
 				<br />
 				<label>Assists</label>
 				<input
-					type="text"
-					placeholder={this.state.assists}
+					type="number"
 					value={this.state.assists}
 					onChange={this.handleAssistsChange}
 				></input>
 				<br />
 				<label>Red Cards</label>
 				<input
-					type="text"
-					placeholder={this.state.redCards}
+					type="number"
 					value={this.state.redCards}
 					onChange={this.handleRedCardsChange}
 				></input>
 				<br />
 				<label>Yellow Cards</label>
 				<input
-					type="text"
-					placeholder={this.state.yellowCards}
+					type="number"
 					value={this.state.yellowCards}
 					onChange={this.handleYellowCardsChange}
 				></input>
